@@ -9,7 +9,7 @@ The current version supports AI text chat, optional phone-browser speech-to-text
 You need a Google Gemini API key and a Cloudflare account. You can do these steps in your phone browser; do not send the API key or app password in chat, and never put either one in GitHub.
 
 1. **Create a Gemini API key** in Google AI Studio: <https://aistudio.google.com/app/apikey>. Check the current limits and billing terms for your Google account.
-2. **Create a Cloudflare Pages site** at <https://dash.cloudflare.com/>. Choose **Workers & Pages → Create → Pages → Connect to Git** and authorize the GitHub repository that contains this project.
+2. **Create a Cloudflare Pages site** at <https://dash.cloudflare.com/>. Choose **Workers & Pages → Create → Pages → Connect to Git** and authorize this GitHub repository. Select the branch `arena/01a0d077-legend-boy` (the phone app is on that branch; choose `main` only after the change is merged there).
 3. Set the Pages project options:
    - **Root directory:** `phone`
    - **Framework preset:** None
