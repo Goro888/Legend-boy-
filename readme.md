@@ -5,6 +5,10 @@
 
 A real-time voice AI that can hear, see, speak, and control your computer — on any OS. Supports Windows, macOS, and Linux. Built on the Gemini Live API for native audio streaming, delivering zero subscriptions and total digital autonomy.
 
+## 📱 Phone-only cloud version (no PC)
+
+A separate mobile web app is available in [`phone/`](phone/). It runs in your phone browser and talks to Gemini through a Cloudflare Pages Function; it does not require the desktop app or a PC. See the [phone-only deployment guide](phone/README.md). The phone version provides AI chat and browser-based voice features, not desktop control or background wake-word listening.
+
 ---
 
 ## ✨ Overview
