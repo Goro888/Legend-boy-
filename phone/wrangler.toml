@@ -1,8 +1,3 @@
 name = "arena-01a0d077-legend-boy"
-main = "worker.js"
+pages_build_output_dir = "./public"
 compatibility_date = "2026-09-24"
-
-[assets]
-directory = "./public"
-binding = "ASSETS"
-run_worker_first = ["/api/*"]
