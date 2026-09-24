@@ -59,7 +59,7 @@
   let toastTimer = 0;
   let recognition = null;
   let isListening = false;
-  let speakReplies = localStorage.getItem(KEYS.speak) === "yes";
+  let speakReplies = localStorage.getItem(KEYS.speak) !== "no";
   let selectedAttachments = [];
   let processingAttachments = false;
   let attachmentGeneration = 0;
@@ -146,7 +146,7 @@
       }
     } catch {
       showAssistant();
-      showToast("You are offline. Saved chats are available; connect to the internet to talk to Legendboy.");
+      showToast("You are offline. Saved chats are available; connect to the internet to talk to Legend Boy.");
     }
   }
 
@@ -208,15 +208,22 @@
     article.className = `message ${isAssistant ? "message-assistant" : "message-user"}${message.error ? " message-error" : ""}`;
 
     const avatar = document.createElement("div");
-    avatar.className = "message-avatar";
+    avatar.className = `message-avatar${isAssistant ? " assistant-avatar" : ""}`;
     avatar.setAttribute("aria-hidden", "true");
-    avatar.textContent = isAssistant ? "L" : "YOU";
+    if (isAssistant) {
+      const face = document.createElement("img");
+      face.src = "/images/legend-boy-face.jpg";
+      face.alt = "";
+      avatar.append(face);
+    } else {
+      avatar.textContent = "YOU";
+    }
 
     const content = document.createElement("div");
     content.className = "message-content";
     const label = document.createElement("div");
     label.className = "message-label";
-    label.textContent = message.error ? "NOTICE" : isAssistant ? "Legendboy" : "YOU";
+    label.textContent = message.error ? "NOTICE" : isAssistant ? "Legend Boy" : "YOU";
     const bubble = document.createElement("div");
     bubble.className = "message-bubble";
     bubble.setAttribute("dir", "auto");
@@ -260,7 +267,7 @@
       speakButton.className = "speak-message";
       speakButton.type = "button";
       speakButton.textContent = "◖  Read aloud";
-      speakButton.setAttribute("aria-label", "Read this Legendboy reply aloud");
+      speakButton.setAttribute("aria-label", "Read this Legend Boy reply aloud");
       speakButton.addEventListener("click", () => speakText(message.text));
       tools.append(speakButton);
       content.append(tools);
@@ -691,7 +698,7 @@
     speakReplies = !speakReplies;
     localStorage.setItem(KEYS.speak, speakReplies ? "yes" : "no");
     updateSpeakButton();
-    if (speakReplies) showToast("Legendboy will read new replies aloud.");
+    if (speakReplies) showToast("Legend Boy will read new replies aloud.");
     else {
       if ("speechSynthesis" in window) window.speechSynthesis.cancel();
       showToast("Read-aloud is off.");
@@ -748,7 +755,7 @@
 
     recognition.onstart = () => {
       setListening(true);
-      showToast("Listening… tap the microphone to stop.");
+      showToast("Listening… your voice message will send when you finish speaking.");
     };
     recognition.onresult = (event) => {
       transcript = Array.from(event.results).map((result) => result[0]?.transcript || "").join(" ").trim();
@@ -765,7 +772,7 @@
     };
     recognition.onend = () => {
       setListening(false);
-      if (transcript) messageInput.focus({ preventScroll: true });
+      if (transcript && messageInput.value.trim()) composerForm.requestSubmit();
     };
     try {
       recognition.start();

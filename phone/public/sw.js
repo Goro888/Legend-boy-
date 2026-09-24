@@ -1,11 +1,11 @@
-const CACHE_NAME = "legendboy-phone-v3";
+const CACHE_NAME = "legendboy-phone-v4";
 const APP_FILES = [
   "/",
   "/index.html",
   "/styles.css",
   "/app.js",
   "/manifest.webmanifest",
-  "/icons/legendboy.svg",
+  "/images/legend-boy-face.jpg",
   "/icons/apple-touch-icon.png",
   "/icons/icon-192.png",
   "/icons/icon-512.png",

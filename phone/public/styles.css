@@ -71,11 +71,18 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
   flex-direction: column;
   justify-content: center;
   width: min(100%, 510px);
+  height: 100%;
   min-height: 100%;
+  overflow-y: auto;
   margin: 0 auto;
   padding: 32px 26px 28px;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
 }
+.unlock-screen::-webkit-scrollbar { display: none; }
 .brand-lockup { display: flex; align-items: center; gap: 17px; margin-bottom: 26px; }
+.unlock-face { align-self: center; width: min(140px, 36vw); aspect-ratio: 1; overflow: hidden; margin: -5px 0 18px; border: 1px solid rgba(116, 215, 255, .35); border-radius: 50%; background: #071222; box-shadow: 0 0 42px rgba(58, 200, 255, .18); }
+.unlock-face img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .brand-orb {
   position: relative;
   display: grid;
@@ -92,11 +99,11 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
   font-weight: 300;
   letter-spacing: -3px;
 }
-.brand-orb::before, .brand-orb::after { position: absolute; inset: 7px; border: 1px solid rgba(121, 229, 255, .16); border-radius: 50%; content: ""; }
+.brand-orb::before, .brand-orb::after { position: absolute; z-index: 2; inset: 7px; border: 1px solid rgba(121, 229, 255, .16); border-radius: 50%; content: ""; pointer-events: none; }
 .brand-orb::after { inset: -6px; border-color: rgba(121, 229, 255, .08); }
-.brand-orb span { transform: translateX(-1px); }
+.brand-orb img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .eyebrow { margin: 0 0 5px; color: var(--cyan); font-size: 9px; font-weight: 800; letter-spacing: 2.3px; }
-#unlockTitle { margin: 0; font-size: clamp(26px, 8vw, 36px); font-weight: 650; letter-spacing: clamp(2px, 1vw, 4px); line-height: 1; }
+#unlockTitle { margin: 0; font-size: clamp(26px, 8vw, 36px); font-weight: 650; letter-spacing: clamp(1px, .65vw, 2.2px); line-height: 1; }
 .brand-period { color: var(--cyan); }
 .unlock-copy { max-width: 390px; margin: 0 0 30px; color: #a5b2c8; font-size: 15px; line-height: 1.65; }
 .unlock-form { display: flex; flex-direction: column; gap: 10px; }
@@ -130,7 +137,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .brand-orb-small { width: 37px; height: 37px; font-size: 17px; }
 .brand-orb-small::before { inset: 4px; }
 .brand-orb-small::after { inset: -4px; }
-.brand-name { font-size: 15px; font-weight: 760; letter-spacing: 2.4px; }
+.brand-name { font-size: 15px; font-weight: 760; letter-spacing: 1.2px; }
 .brand-caption { margin-top: 3px; color: var(--subtle); font-size: 8px; font-weight: 800; letter-spacing: 1.5px; }
 .topbar-actions { display: flex; align-items: center; gap: 12px; }
 .connection-status { display: flex; align-items: center; gap: 7px; color: #86a9a9; font-size: 8px; font-weight: 800; letter-spacing: 1.15px; }
@@ -160,9 +167,9 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .intro-line:last-child { transform: rotate(180deg); }
 .conversation { position: relative; min-height: 0; overflow-x: hidden; overflow-y: auto; padding: 12px 17px 18px; scroll-behavior: smooth; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(104, 130, 169, .27) transparent; }
 .welcome-card { display: flex; flex-direction: column; align-items: center; max-width: 440px; margin: clamp(22px, 8vh, 78px) auto 0; padding: 18px; text-align: center; animation: arrive .55s ease both; }
-.welcome-symbol { position: relative; display: grid; width: 96px; height: 96px; place-items: center; margin-bottom: 22px; border: 1px solid rgba(116, 215, 255, .24); border-radius: 50%; background: radial-gradient(circle, rgba(65, 139, 207, .19), rgba(10, 17, 31, .45) 65%); box-shadow: 0 0 40px rgba(58, 159, 255, .1), inset 0 0 30px rgba(67, 172, 255, .08); }
-.welcome-symbol::before { position: absolute; width: 75px; height: 75px; border: 1px solid rgba(130, 218, 255, .18); border-radius: 50%; content: ""; }
-.welcome-symbol span { width: 18px; height: 18px; border: 1px solid rgba(148, 239, 255, .8); border-radius: 50%; background: rgba(127, 228, 255, .22); box-shadow: 0 0 22px rgba(101, 216, 255, .85), 0 0 42px rgba(97, 152, 255, .5); }
+.welcome-symbol { position: relative; width: 142px; height: 142px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(116, 215, 255, .35); border-radius: 50%; background: #071222; box-shadow: 0 0 42px rgba(58, 200, 255, .18), inset 0 0 30px rgba(67, 172, 255, .08); }
+.welcome-symbol img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
 .welcome-card .eyebrow { margin-bottom: 10px; color: #80bad9; font-size: 8px; letter-spacing: 2px; }
 .welcome-card h2 { margin: 0; font-size: clamp(25px, 7vw, 34px); font-weight: 560; letter-spacing: -.8px; }
 .welcome-card > p:not(.eyebrow) { max-width: 330px; margin: 12px 0 0; color: #8290a8; font-size: 13px; line-height: 1.7; }
@@ -172,7 +179,9 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .message-list { display: flex; flex-direction: column; gap: 19px; max-width: 610px; margin: 0 auto; }
 .message { display: flex; align-items: flex-start; gap: 10px; animation: arrive .2s ease both; }
 .message-user { flex-direction: row-reverse; }
-.message-avatar { display: grid; width: 29px; height: 29px; flex: 0 0 auto; place-items: center; border: 1px solid rgba(111, 212, 255, .23); border-radius: 50%; color: #90deff; background: rgba(35, 85, 122, .2); font-size: 11px; font-weight: 750; }
+.message-avatar { display: grid; width: 32px; height: 32px; flex: 0 0 auto; place-items: center; border: 1px solid rgba(111, 212, 255, .23); border-radius: 50%; color: #90deff; background: rgba(35, 85, 122, .2); font-size: 9px; font-weight: 750; }
+.assistant-avatar { overflow: hidden; padding: 0; }
+.assistant-avatar img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .message-user .message-avatar { border-color: rgba(156, 134, 255, .25); color: #c6b9ff; background: rgba(87, 64, 144, .24); }
 .message-content { max-width: min(82%, 520px); }
 .message-user .message-content { display: flex; flex-direction: column; align-items: flex-end; }
@@ -184,7 +193,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .speak-message { display: inline-flex; align-items: center; gap: 5px; padding: 4px 7px; border: 0; border-radius: 7px; color: #7385a0; background: transparent; font-size: 10px; cursor: pointer; }
 .speak-message:hover { color: var(--cyan); background: rgba(118, 206, 255, .07); }
 .typing-indicator { display: flex; align-items: center; gap: 9px; max-width: 610px; margin: 17px auto 7px; }
-.typing-avatar { display: grid; width: 27px; height: 27px; place-items: center; border: 1px solid rgba(111, 212, 255, .22); border-radius: 50%; color: var(--cyan); background: rgba(35, 85, 122, .2); font-size: 10px; }
+.typing-avatar { display: grid; width: 32px; height: 32px; overflow: hidden; flex: 0 0 auto; place-items: center; border: 1px solid rgba(111, 212, 255, .22); border-radius: 50%; background: rgba(35, 85, 122, .2); }\n.typing-avatar img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .typing-bubble { display: flex; align-items: center; gap: 4px; padding: 11px 13px; border: 1px solid rgba(128, 160, 209, .13); border-radius: 5px 13px 13px; background: rgba(17, 24, 39, .75); }
 .typing-bubble span { width: 4px; height: 4px; border-radius: 50%; background: #8bcfff; animation: dotPulse 1.15s infinite ease-in-out; }
 .typing-bubble span:nth-child(2) { animation-delay: .14s; }
@@ -225,9 +234,9 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 }
 @media (max-height: 680px) {
   .unlock-screen { justify-content: flex-start; padding-top: max(28px, env(safe-area-inset-top)); }
+  .unlock-face { width: 96px; margin: -8px 0 12px; }
   .welcome-card { margin-top: 14px; }
-  .welcome-symbol { width: 74px; height: 74px; margin-bottom: 15px; }
-  .welcome-symbol::before { width: 58px; height: 58px; }
+  .welcome-symbol { width: 94px; height: 94px; margin-bottom: 12px; }
   .welcome-chips { margin-top: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {

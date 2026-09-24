@@ -1,7 +1,7 @@
 {
-  "name": "Legendboy Phone Assistant",
-  "short_name": "Legendboy",
-  "description": "A private, cloud-hosted AI assistant for your phone.",
+  "name": "Legend Boy Phone Assistant",
+  "short_name": "Legend Boy",
+  "description": "Legend Boy is your phone-based voice assistant for chat, photos, and files.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

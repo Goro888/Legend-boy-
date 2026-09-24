@@ -1,10 +1,10 @@
-# Legendboy Phone — use it with no PC
+# Legend Boy Phone Assistant
 
-This is a phone-first web app in this repository. It runs in your mobile browser and uses Cloudflare Pages Functions (JavaScript) to call an AI provider. **It does not connect to a computer, and it does not install or run the desktop Python app.** The repository's desktop `requirements.txt` is not needed for this app.
+This is a phone-first web app in this repository. It runs in your mobile browser and uses Cloudflare Pages Functions (JavaScript) to call an AI provider. The desktop assistant is a separate app; the phone version runs independently.
 
 The chat composer has working **Camera** and **Photos & files** controls. You can capture a new photo, choose photos from your library, or attach readable text files (TXT, MD, CSV, JSON, logs, common source/config files). Up to four attachments can be sent with a prompt; images are resized in the browser before upload. Photos and file contents go to the configured AI provider for analysis and are not saved in local chat history. The chosen model must support vision to analyze images. PDF and office documents are not currently supported as uploads.
 
-The app also supports optional phone-browser speech-to-text and read-aloud using your phone's speech voices. Dictation support depends on the browser and installed language services; typing always works. It does not control desktop apps or listen for a wake word in the background.
+Replies are spoken aloud automatically by default using your phone's available speech voice, whether you type or speak; turn this off in Settings if you prefer silent replies. Tap the microphone to speak; it sends when you finish speaking. Speech recognition and voice availability depend on your browser and language. The app does not control desktop software or listen for a wake word in the background.
 
 ## Set it up from your phone
 
@@ -39,11 +39,11 @@ The xKiro backend uses its OpenAI-compatible chat endpoint and expects a complet
 
 ## What this does not do
 
-This is a phone assistant, not a mobile port of the desktop automation. It cannot operate a computer that is not running, access private files on a PC, launch desktop software, or provide an always-on wake word. The phone must have internet access for AI replies; the cached app shell may open offline, but the AI itself cannot answer offline.
+This is a phone assistant, not a mobile port of the desktop automation. It cannot operate a computer that is not running, access private files on a computer, launch desktop software, or provide an always-on wake word. The phone must have internet access for AI replies; the cached app shell may open offline, but the AI itself cannot answer offline.
 
 ## Files
 
-- `public/` — installable mobile app, styling, icon, and offline app shell.
+- `public/` — installable app, styling, Legend Boy face artwork and icons, and offline app shell.
 - `functions/api/session.js` — password sign-in and short-lived signed sessions.
 - `functions/api/chat.js` — validates requests and calls the configured AI provider server-side.
 - `wrangler.toml` — Cloudflare Pages settings and output directory.

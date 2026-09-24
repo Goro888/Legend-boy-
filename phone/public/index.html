@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#070a12">
-  <meta name="description" content="A private, cloud-hosted Legendboy-style AI assistant for your phone.">
+  <meta name="description" content="Legend Boy is your phone-based voice assistant for chat, photos, and files.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Legendboy">
+  <meta name="apple-mobile-web-app-title" content="Legend Boy">
   <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="icon" href="/icons/legendboy.svg" type="image/svg+xml">
+  <link rel="icon" href="/icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
   <link rel="stylesheet" href="/styles.css">
-  <title>Legendboy — Phone Assistant</title>
+  <title>Legend Boy — Phone Assistant</title>
 </head>
 <body>
   <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -21,13 +21,14 @@
   <main class="app-frame">
     <section id="unlockScreen" class="unlock-screen" aria-labelledby="unlockTitle">
       <div class="brand-lockup">
-        <div class="brand-orb" aria-hidden="true"><span>L</span></div>
+        <div class="brand-orb" aria-hidden="true"><img src="/images/legend-boy-face.jpg" alt=""></div>
         <div>
           <p class="eyebrow">PERSONAL AI · PHONE EDITION</p>
-          <h1 id="unlockTitle">Legendboy<span class="brand-period">.</span></h1>
+          <h1 id="unlockTitle">Legend Boy<span class="brand-period">.</span></h1>
         </div>
       </div>
-      <p class="unlock-copy">Your assistant runs in the cloud, so you can use it from your phone without a PC.</p>
+      <div class="unlock-face" aria-hidden="true"><img src="/images/legend-boy-face.jpg" alt=""></div>
+      <p class="unlock-copy">Your cloud assistant is ready whenever you open this app on your phone.</p>
 
       <form id="unlockForm" class="unlock-form">
         <label for="appPassword">App password</label>
@@ -52,12 +53,12 @@
       <p class="setup-hint">After you sign in, <strong>Camera</strong> and <strong>Photos &amp; files</strong> appear above the message box. Not deployed yet? Open <strong>phone/README.md</strong> in the GitHub repository for phone-only setup steps.</p>
     </section>
 
-    <section id="assistantScreen" class="assistant-screen" hidden aria-label="Legendboy chat">
+    <section id="assistantScreen" class="assistant-screen" hidden aria-label="Legend Boy chat">
       <header class="topbar">
         <div class="brand-small">
-          <div class="brand-orb brand-orb-small" aria-hidden="true"><span>L</span></div>
+          <div class="brand-orb brand-orb-small" aria-hidden="true"><img src="/images/legend-boy-face.jpg" alt=""></div>
           <div>
-            <div class="brand-name">Legendboy<span class="brand-period">.</span></div>
+            <div class="brand-name">Legend Boy<span class="brand-period">.</span></div>
             <div class="brand-caption">PHONE ASSISTANT</div>
           </div>
         </div>
@@ -70,7 +71,7 @@
       </header>
 
       <div id="settingsPanel" class="settings-panel" hidden>
-        <div class="settings-heading"><span>PHONE SETTINGS</span><span class="settings-note">No PC needed</span></div>
+        <div class="settings-heading"><span>PHONE SETTINGS</span><span class="settings-note">Ready on your phone</span></div>
         <label class="setting-row" for="speechLanguage">
           <span><strong>Voice language</strong><small>Used by your phone's speech service</small></span>
           <select id="speechLanguage" aria-label="Voice language">
@@ -80,7 +81,7 @@
             <option value="tr-TR">Türkçe</option>
           </select>
         </label>
-        <button id="speakToggle" class="setting-action" type="button" aria-pressed="false"><span>🔊 Read replies aloud</span><span id="speakState">OFF</span></button>
+        <button id="speakToggle" class="setting-action" type="button" aria-pressed="true"><span>🔊 Automatic voice replies</span><span id="speakState">ON</span></button>
         <button id="clearChatButton" class="setting-action" type="button"><span>⌫ Clear chat on this phone</span><span>›</span></button>
         <button id="logoutButton" class="setting-action logout-action" type="button"><span>↪ Sign out</span><span>›</span></button>
       </div>
@@ -89,18 +90,18 @@
 
       <section id="conversation" class="conversation" aria-label="Conversation" aria-live="polite" aria-relevant="additions text">
         <div id="welcomeCard" class="welcome-card">
-          <div class="welcome-symbol" aria-hidden="true"><span></span></div>
+          <div class="welcome-symbol" aria-hidden="true"><img src="/images/legend-boy-face.jpg" alt=""></div>
           <p class="eyebrow">ALL SYSTEMS READY</p>
           <h2>How can I help?</h2>
-          <p>Ask anything, or tap the microphone to dictate. Your chat history is saved only in this browser.</p>
+          <p>Type a message, or tap the microphone to speak; voice messages send when you finish. Replies are spoken aloud by default.</p>
           <div class="welcome-chips" aria-label="Example prompts">
             <button class="prompt-chip" type="button" data-prompt="Give me a quick plan for today">Plan my day</button>
             <button class="prompt-chip" type="button" data-prompt="Explain something interesting in simple words">Teach me something</button>
           </div>
         </div>
         <div id="messageList" class="message-list"></div>
-        <div id="typingIndicator" class="typing-indicator" hidden aria-label="Legendboy is thinking">
-          <div class="typing-avatar" aria-hidden="true">L</div>
+        <div id="typingIndicator" class="typing-indicator" hidden aria-label="Legend Boy is thinking">
+          <div class="typing-avatar" aria-hidden="true"><img src="/images/legend-boy-face.jpg" alt=""></div>
           <div class="typing-bubble"><span></span><span></span><span></span></div>
           <span class="typing-label">THINKING</span>
         </div>
@@ -128,13 +129,13 @@
           <button id="micButton" class="mic-button" type="button" aria-label="Dictate a message" title="Dictate a message">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"/></svg>
           </button>
-          <label class="visually-hidden" for="messageInput">Message Legendboy</label>
-          <textarea id="messageInput" name="message" rows="1" maxlength="6000" enterkeyhint="send" placeholder="Ask Legendboy anything…" autocomplete="off"></textarea>
+          <label class="visually-hidden" for="messageInput">Message Legend Boy</label>
+          <textarea id="messageInput" name="message" rows="1" maxlength="6000" enterkeyhint="send" placeholder="Ask Legend Boy anything…" autocomplete="off"></textarea>
           <button id="sendButton" class="send-button" type="submit" aria-label="Send message">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 17 8-17 8 3-8-3-8Zm3 8h14"/></svg>
           </button>
         </form>
-        <div class="composer-footnote"><span>MICROPHONE STARTS ONLY WHEN YOU TAP</span><span id="characterCount">0 / 6000</span></div>
+        <div class="composer-footnote"><span>TAP MIC · AUTO-SENDS AFTER SPEECH</span><span id="characterCount">0 / 6000</span></div>
         <p class="cloud-disclaimer">Photos and files are sent to your configured AI provider for analysis; they are not saved in chat history.</p>
       </div>
     </section>
