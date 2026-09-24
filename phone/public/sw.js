@@ -1,4 +1,4 @@
-const CACHE_NAME = "legendboy-phone-v2";
+const CACHE_NAME = "legendboy-phone-v3";
 const APP_FILES = [
   "/",
   "/index.html",
