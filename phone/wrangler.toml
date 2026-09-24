@@ -1,2 +1,1 @@
-# phone/wrangler.toml
-name = 'legend-boy'
+pages_build_output_dir = "."
