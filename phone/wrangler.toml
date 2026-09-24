@@ -1,3 +1,8 @@
 name = "jarvis-phone"
+main = "worker.js"
 compatibility_date = "2026-09-24"
-pages_build_output_dir = "./public"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
