@@ -9,7 +9,7 @@ The current version supports AI text chat, optional phone-browser speech-to-text
 You need a Google Gemini API key and a Cloudflare account. You can do these steps in your phone browser; do not send the API key or app password in chat, and never put either one in GitHub.
 
 1. **Create a Gemini API key** in Google AI Studio: <https://aistudio.google.com/app/apikey>. Check the current limits and billing terms for your Google account.
-2. **Create/connect a Cloudflare Worker** using the GitHub repository. Use the branch `arena/01a0d077-legend-boy` (the phone app is on that branch; choose `main` only after this change is merged there). Name the Worker `jarvis-phone` to match `wrangler.toml`.
+2. **Create/connect a Cloudflare Worker** using the GitHub repository. Use the branch `arena/01a0d077-legend-boy` (the phone app is on that branch; choose `main` only after this change is merged there). The Worker name in `wrangler.toml` is `arena-01a0d077-legend-boy`.
 3. In the Worker build settings set:
    - **Root directory:** `phone`
    - **Build command:** leave blank (there is no compile/build step)
