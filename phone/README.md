@@ -10,12 +10,13 @@ The app also supports optional phone-browser speech-to-text and read-aloud using
 
 You need a Cloudflare account and an API key for your AI provider. You said you have an xKiro key, so these steps use xKiro; **you do not need a separate Gemini API key**. Never paste your API key or app password into chat or commit them to GitHub.
 
-1. In Cloudflare, create/connect a **Pages** project to this GitHub repository. Select branch `arena/01a0d077-legend-boy`; the phone app is on that branch. The existing Pages deploy target is `arena-01a0d077-legend-boy`.
+1. In Cloudflare, use a **Pages** project (not a Worker or Workers Builds deployment) connected to this GitHub repository. Select branch `arena/01a0d077-legend-boy`; the phone app is on that branch. The existing Pages deploy target is `arena-01a0d077-legend-boy`.
 2. Configure the Pages build:
    - **Root directory:** `phone`
    - **Framework preset:** None
    - **Build command:** leave blank
-   - If Cloudflare requires a deploy command, use: `npx wrangler pages deploy public --project-name=arena-01a0d077-legend-boy`
+   - **Build output directory:** `public`
+   - If you deploy manually from the `phone/` directory, use `npx wrangler pages deploy public --project-name=arena-01a0d077-legend-boy`.
 3. In the Pages project's runtime **Settings → Variables and Secrets**, add:
    - `XKIRO_API_KEY` as a **secret** — your xKiro API key.
    - `APP_PASSWORD` as a **secret** — a new, unique, random password with at least 16 characters. This protects the public app URL; do not reuse your Google password.
@@ -25,7 +26,7 @@ You need a Cloudflare account and an API key for your AI provider. You said you 
 
 The xKiro backend uses its OpenAI-compatible chat endpoint and expects a complete `vendor/model` ID. To use Google's Gemini API directly instead, set `AI_PROVIDER=gemini` and add `GEMINI_API_KEY` as a secret; `GEMINI_MODEL` is optional.
 
-**Do not use `npx wrangler deploy`**—that is for a Worker, not this Pages project. The correct Pages command is `npx wrangler pages deploy public --project-name=arena-01a0d077-legend-boy`. Run it from the `phone/` project root so Wrangler can include the sibling `functions/` directory. Keep the Cloudflare root directory at `phone`; if it points to the repository root, Cloudflare detects and installs the desktop Python dependencies instead.
+**Deployment troubleshooting:** Do not use `npx wrangler deploy`—that deploys a Worker. This app is a Cloudflare Pages project using `pages_build_output_dir` and Pages Functions, so it intentionally has no Worker `main` or `[assets]` entry. If the build log says “Missing entry-point to Worker script or to assets directory” or recommends `wrangler pages deploy`, Cloudflare is running a Worker deployment/build: switch to the Pages project/Git integration, or deploy manually with `npx wrangler pages deploy public --project-name=arena-01a0d077-legend-boy` from the `phone/` directory. Do not add a Worker entry point to silence that error. Keep the Pages root directory at `phone`; if it points to the repository root, Cloudflare detects and installs the desktop Python dependencies instead.
 
 ## Security and privacy
 
