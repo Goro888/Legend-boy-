@@ -1,11 +1,11 @@
-const CACHE_NAME = "jarvis-phone-v1";
+const CACHE_NAME = "legendboy-phone-v2";
 const APP_FILES = [
   "/",
   "/index.html",
   "/styles.css",
   "/app.js",
   "/manifest.webmanifest",
-  "/icons/jarvis.svg",
+  "/icons/legendboy.svg",
   "/icons/apple-touch-icon.png",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
@@ -19,7 +19,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) => Promise.all(
-      keys.filter((key) => key.startsWith("jarvis-phone-") && key !== CACHE_NAME)
+      keys.filter((key) => (key.startsWith("jarvis-phone-") || key.startsWith("legendboy-phone-")) && key !== CACHE_NAME)
         .map((key) => caches.delete(key)),
     )),
   );

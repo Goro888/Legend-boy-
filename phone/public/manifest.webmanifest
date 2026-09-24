@@ -1,6 +1,6 @@
 {
-  "name": "JARVIS Phone Assistant",
-  "short_name": "JARVIS",
+  "name": "Legendboy Phone Assistant",
+  "short_name": "Legendboy",
   "description": "A private, cloud-hosted AI assistant for your phone.",
   "start_url": "/",
   "scope": "/",

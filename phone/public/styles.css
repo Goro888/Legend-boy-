@@ -96,7 +96,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .brand-orb::after { inset: -6px; border-color: rgba(121, 229, 255, .08); }
 .brand-orb span { transform: translateX(-1px); }
 .eyebrow { margin: 0 0 5px; color: var(--cyan); font-size: 9px; font-weight: 800; letter-spacing: 2.3px; }
-#unlockTitle { margin: 0; font-size: 36px; font-weight: 650; letter-spacing: 5px; line-height: 1; }
+#unlockTitle { margin: 0; font-size: clamp(26px, 8vw, 36px); font-weight: 650; letter-spacing: clamp(2px, 1vw, 4px); line-height: 1; }
 .brand-period { color: var(--cyan); }
 .unlock-copy { max-width: 390px; margin: 0 0 30px; color: #a5b2c8; font-size: 15px; line-height: 1.65; }
 .unlock-form { display: flex; flex-direction: column; gap: 10px; }
@@ -232,4 +232,38 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* Camera, photo and document attachments */
+.attachment-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; max-width: 640px; margin: 0 auto 8px; }
+.attachment-actions { display: flex; flex: 0 0 auto; gap: 7px; }
+.attachment-action { display: inline-flex; min-height: 34px; align-items: center; gap: 7px; padding: 0 11px; border: 1px solid rgba(137, 170, 215, .16); border-radius: 11px; color: #9cafc9; background: rgba(18, 25, 41, .72); font-size: 10px; font-weight: 700; cursor: pointer; transition: border-color .18s, color .18s, background .18s, opacity .18s; }
+.attachment-action:hover:not(:disabled) { border-color: rgba(121, 229, 255, .38); color: var(--cyan); background: rgba(49, 94, 125, .16); }
+.attachment-action:disabled { opacity: .45; cursor: wait; }
+.attachment-action svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.attachment-hint { overflow: hidden; color: #596a83; font-size: 9px; line-height: 1.35; text-align: right; text-overflow: ellipsis; white-space: nowrap; }
+.attachment-tray { display: flex; max-width: 640px; gap: 7px; overflow-x: auto; margin: 0 auto 8px; padding: 2px 1px 5px; scrollbar-width: thin; scrollbar-color: rgba(104, 130, 169, .24) transparent; }
+.attachment-card { position: relative; display: flex; min-width: 0; width: 184px; flex: 0 0 auto; align-items: center; gap: 8px; padding: 6px 30px 6px 6px; border: 1px solid rgba(137, 170, 215, .14); border-radius: 12px; background: rgba(16, 23, 38, .86); }
+.attachment-card-image, .attachment-card-file-icon { display: grid; width: 38px; height: 38px; flex: 0 0 auto; place-items: center; border: 1px solid rgba(125, 164, 213, .16); border-radius: 8px; color: #9beeff; background: rgba(34, 54, 82, .6); }
+.attachment-card-image { object-fit: cover; }
+.attachment-card-file-icon { font-size: 8px; font-weight: 900; letter-spacing: .5px; }
+.attachment-card-details { display: flex; min-width: 0; flex-direction: column; gap: 3px; }
+.attachment-card-name { overflow: hidden; color: #c6d3e5; font-size: 9px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.attachment-card-size { color: #74849d; font-size: 8px; }
+.remove-attachment { position: absolute; top: 4px; right: 4px; display: grid; width: 22px; height: 22px; place-items: center; border: 1px solid rgba(150, 170, 205, .14); border-radius: 50%; color: #a8b6ca; background: rgba(6, 10, 18, .82); font-size: 16px; line-height: 1; cursor: pointer; }
+.remove-attachment:hover { border-color: rgba(255, 133, 149, .4); color: #ffacb7; }
+.message-attachments { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+.message-image-preview { overflow: hidden; width: 106px; height: 106px; padding: 0; border: 1px solid rgba(128, 160, 209, .2); border-radius: 11px; background: rgba(17, 24, 39, .83); cursor: zoom-in; }
+.message-image-preview img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.message-file-badge { display: inline-flex; max-width: min(220px, 66vw); align-items: center; gap: 7px; padding: 6px 8px; border: 1px solid rgba(128, 160, 209, .16); border-radius: 9px; color: #c0cde0; background: rgba(20, 30, 48, .74); }
+.file-kind { flex: 0 0 auto; padding: 3px 4px; border-radius: 4px; color: #9beeff; background: rgba(77, 135, 166, .2); font-size: 7px; font-weight: 900; letter-spacing: .4px; }
+.file-name { overflow: hidden; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.image-viewer { position: fixed; z-index: 50; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: max(20px, env(safe-area-inset-top)) 18px max(20px, env(safe-area-inset-bottom)); background: rgba(3, 6, 12, .96); backdrop-filter: blur(18px); }
+.image-viewer img { display: block; max-width: 100%; max-height: 78dvh; object-fit: contain; border-radius: 8px; }
+.image-viewer-close { position: absolute; top: max(18px, env(safe-area-inset-top)); right: 18px; display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid rgba(145, 173, 217, .25); border-radius: 50%; color: #eef5ff; background: rgba(19, 28, 45, .9); font-size: 25px; cursor: pointer; }
+.image-viewer-caption { max-width: 90vw; overflow: hidden; margin: 0; color: #acbad0; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 420px) {
+  .attachment-hint { display: none; }
+  .attachment-toolbar { justify-content: flex-start; }
+  .attachment-action { padding: 0 9px; }
 }

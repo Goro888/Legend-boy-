@@ -1,14 +1,16 @@
-# JARVIS Phone — use it with no PC
+# Legendboy Phone — use it with no PC
 
 This is a phone-first web app in this repository. It runs in your mobile browser and uses Cloudflare Pages Functions (JavaScript) to call an AI provider. **It does not connect to a computer, and it does not install or run the desktop Python app.** The repository's desktop `requirements.txt` is not needed for this app.
 
-The current version supports AI text chat, optional phone-browser speech-to-text, and read-aloud using your phone's speech voices. Dictation support depends on the browser and installed language services; typing always works. It does not control desktop apps or listen for a wake word in the background.
+The chat composer has working **Camera** and **Photos & files** controls. You can capture a new photo, choose photos from your library, or attach readable text files (TXT, MD, CSV, JSON, logs, common source/config files). Up to four attachments can be sent with a prompt; images are resized in the browser before upload. Photos and file contents go to the configured AI provider for analysis and are not saved in local chat history. The chosen model must support vision to analyze images. PDF and office documents are not currently supported as uploads.
+
+The app also supports optional phone-browser speech-to-text and read-aloud using your phone's speech voices. Dictation support depends on the browser and installed language services; typing always works. It does not control desktop apps or listen for a wake word in the background.
 
 ## Set it up from your phone
 
 You need a Cloudflare account and an API key for your AI provider. You said you have an xKiro key, so these steps use xKiro; **you do not need a separate Gemini API key**. Never paste your API key or app password into chat or commit them to GitHub.
 
-1. In Cloudflare, create/connect a **Pages** project to this GitHub repository. Select branch `arena/01a0d077-legend-boy`; the phone app is on that branch. The Pages project name in `wrangler.toml` is `arena-01a0d077-legend-boy`.
+1. In Cloudflare, create/connect a **Pages** project to this GitHub repository. Select branch `arena/01a0d077-legend-boy`; the phone app is on that branch. The existing Pages deploy target is `arena-01a0d077-legend-boy`.
 2. Configure the Pages build:
    - **Root directory:** `phone`
    - **Framework preset:** None
@@ -31,7 +33,7 @@ The xKiro backend uses its OpenAI-compatible chat endpoint and expects a complet
 - Conversations are saved in the phone browser's local storage so they survive a refresh. The Pages Functions do not save chat history, but each prompt and recent conversation context is sent to xKiro (and the selected model provider) or to Google if using the direct Gemini option. Use **Settings → Clear chat on this phone** to delete local history.
 - Use a unique, strong app password. If you share the Pages URL, other people still cannot use the AI endpoint without the password, but they can try to sign in. Add Cloudflare rate-limiting rules if you make the app public or expect heavy traffic.
 - A browser session lasts 7 days. Avoid “Remember this phone” on a shared device; signing out removes its saved token.
-- HTTPS is required for microphone permission and PWA install. Voice recognition and available spoken voices vary by browser and language. The microphone is only activated after you tap the mic button; there is no background wake-word listener.
+- HTTPS is required for camera/microphone access and PWA install. The camera and microphone are activated only after you tap their buttons; the app does not access them in the background. Voice recognition and available spoken voices vary by browser and language.
 - AI-provider usage may have limits or charges. Review the provider's current terms and usage before sharing the app.
 
 ## What this does not do
