@@ -1,12 +1,2 @@
-name = "arena-01a0d077-legend-boy"
-pages_build_output_dir = "./public"
-compatibility_date = "2026-09-24"
-
-[vars]
-# Defaults use xKiro, but can be changed to any supported provider/model.
-AI_API_PROTOCOL = "openai"
-AI_BASE_URL = "https://api.xkiro.com/v1"
-AI_MODEL = "google/gemini-3.7-flash"
-
-# AI_API_KEY, APP_PASSWORD, and provider credentials are Secrets. Never put
-# secrets in this file or under [vars]; add them in Cloudflare Pages settings.
+# phone/wrangler.toml
+name = 'legend-boy'
