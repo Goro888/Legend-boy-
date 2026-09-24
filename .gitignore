@@ -14,6 +14,12 @@ config/whatsapp_web/          # a LINKED WhatsApp session — committing it hand
 *credentials*.json
 .env
 .env.*
+.dev.vars
+.dev.vars.*
+**/.dev.vars
+**/.dev.vars.*
+.wrangler/
+**/.wrangler/
 
 # ── Personal data the assistant accumulates about you ─────────────────────────
 memory/long_term.json

@@ -1,3 +1,11 @@
-name = "legend-boy"
-compatibility_date = "2026-01-01"
-pages_build_output_dir = "./dist"
+# phone/wrangler.toml — Cloudflare Pages project configuration.
+name = "arena-01a0d077-legend-boy"
+pages_build_output_dir = "./public"
+compatibility_date = "2026-09-24"
+
+[vars]
+AI_PROVIDER = "xkiro"
+XKIRO_MODEL = "google/gemini-3.7-flash"
+
+# Never put APP_PASSWORD or XKIRO_API_KEY in this file or under [vars].
+# Add both as runtime secrets in the Cloudflare Pages dashboard instead.

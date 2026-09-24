@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070a12">
+  <meta name="description" content="Legend Boy is your phone-based voice assistant for chat, photos, and files.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Legend Boy">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Legend Boy — Phone Assistant</title>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <main class="app-frame">
+    <section id="unlockScreen" class="unlock-screen" aria-labelledby="unlockTitle">
+      <div class="brand-lockup">
+        <div class="brand-orb" aria-hidden="true"><img src="/images/legend-boy-face.jpg" alt=""></div>
+        <div>
+          <p class="eyebrow">PERSONAL AI · PHONE EDITION</p>
+          <h1 id="unlockTitle">Legend Boy<span class="brand-period">.</span></h1>
+        </div>
+      </div>
+      <div class="unlock-face" aria-hidden="true"><img src="/images/legend-boy-face.jpg" alt=""></div>
+      <p class="unlock-copy">Your cloud assistant is ready whenever you open this app on your phone.</p>
+
+      <form id="unlockForm" class="unlock-form">
+        <label for="appPassword">App password</label>
+        <div class="password-field">
+          <input id="appPassword" name="password" type="password" autocomplete="current-password" minlength="16" maxlength="256" placeholder="Enter your cloud app password" required>
+          <button id="showPassword" class="reveal-button" type="button" aria-label="Show password">Show</button>
+        </div>
+        <label class="remember-option" for="rememberDevice">
+          <input id="rememberDevice" type="checkbox" checked>
+          <span>Remember this phone for 7 days</span>
+        </label>
+        <button id="unlockButton" class="primary-button unlock-button" type="submit">
+          <span>OPEN LEGEND BOY</span><span aria-hidden="true">↗</span>
+        </button>
+        <p id="unlockMessage" class="form-message" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="privacy-card">
+        <span class="privacy-icon" aria-hidden="true">◇</span>
+        <p><strong>Your AI provider key stays private.</strong><br>It is kept in your cloud host's secret settings, never in this page or the GitHub repository.</p>
+      </div>
+      <p class="setup-hint">After you sign in, <strong>Camera</strong> and <strong>Photos &amp; files</strong> appear above the message box. Not deployed yet? Open <strong>phone/README.md</strong> in the GitHub repository for phone-only setup steps.</p>
+    </section>
+
+    <section id="assistantScreen" class="assistant-screen" hidden aria-label="Legend Boy chat">
+      <header class="topbar">
+        <div class="brand-small">
+          <div class="brand-orb brand-orb-small" aria-hidden="true"><img src="/images/legend-boy-face.jpg" alt=""></div>
+          <div>
+            <div class="brand-name">Legend Boy<span class="brand-period">.</span></div>
+            <div class="brand-caption">PHONE ASSISTANT</div>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <div id="connectionStatus" class="connection-status"><span class="status-dot"></span><span id="connectionLabel">CLOUD READY</span></div>
+          <button id="settingsButton" class="round-button" type="button" aria-label="Open settings" aria-expanded="false" aria-controls="settingsPanel">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4Z"/><path d="m19.4 13.5 1.1.8-1.2 2.1-1.3-.5a7.6 7.6 0 0 1-1.5.9l-.2 1.4h-2.5l-.3-1.4a7.6 7.6 0 0 1-1.7-.1l-.8 1.2-2.2-1.2.5-1.4a7.7 7.7 0 0 1-1-1.4l-1.4-.1v-2.5l1.4-.3c.1-.6.4-1.2.7-1.7l-.7-1.3 1.9-1.5 1.1.9a7.3 7.3 0 0 1 1.8-.4l.5-1.3 2.4.6v1.4c.6.3 1.1.7 1.5 1.2l1.4-.3.9 2.3-1.2.8c.1.6.1 1.2-.1 1.8Z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div id="settingsPanel" class="settings-panel" hidden>
+        <div class="settings-heading"><span>PHONE SETTINGS</span><span class="settings-note">Ready on your phone</span></div>
+        <label class="setting-row" for="speechLanguage">
+          <span><strong>Voice language</strong><small>Used by your phone's speech service</small></span>
+          <select id="speechLanguage" aria-label="Voice language">
+            <option value="en-US">English</option>
+            <option value="ar-IQ">العربية</option>
+            <option value="ckb-IQ">کوردی (سۆرانی)</option>
+            <option value="tr-TR">Türkçe</option>
+          </select>
+        </label>
+        <button id="speakToggle" class="setting-action" type="button" aria-pressed="true"><span>🔊 Automatic voice replies</span><span id="speakState">ON</span></button>
+        <button id="clearChatButton" class="setting-action" type="button"><span>⌫ Clear chat on this phone</span><span>›</span></button>
+        <button id="logoutButton" class="setting-action logout-action" type="button"><span>↪ Sign out</span><span>›</span></button>
+      </div>
+
+      <div class="chat-intro"><span class="intro-line"></span><span>SECURE CLOUD SESSION</span><span class="intro-line"></span></div>
+
+      <section id="conversation" class="conversation" aria-label="Conversation" aria-live="polite" aria-relevant="additions text">
+        <div id="welcomeCard" class="welcome-card">
+          <div class="welcome-symbol" aria-hidden="true"><img src="/images/legend-boy-face.jpg" alt=""></div>
+          <p class="eyebrow">ALL SYSTEMS READY</p>
+          <h2>How can I help?</h2>
+          <p>Type a message, or tap the microphone to speak; voice messages send when you finish. Replies are spoken aloud by default.</p>
+          <div class="welcome-chips" aria-label="Example prompts">
+            <button class="prompt-chip" type="button" data-prompt="Give me a quick plan for today">Plan my day</button>
+            <button class="prompt-chip" type="button" data-prompt="Explain something interesting in simple words">Teach me something</button>
+          </div>
+        </div>
+        <div id="messageList" class="message-list"></div>
+        <div id="typingIndicator" class="typing-indicator" hidden aria-label="Legend Boy is thinking">
+          <div class="typing-avatar" aria-hidden="true"><img src="/images/legend-boy-face.jpg" alt=""></div>
+          <div class="typing-bubble"><span></span><span></span><span></span></div>
+          <span class="typing-label">THINKING</span>
+        </div>
+        <div id="bottomAnchor" aria-hidden="true"></div>
+      </section>
+
+      <div class="composer-wrap">
+        <div class="attachment-toolbar" role="group" aria-label="Add a photo or file">
+          <div class="attachment-actions">
+            <button id="cameraButton" class="attachment-action" type="button" aria-label="Take a photo with the camera" title="Take a photo">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3.2l1.4-2h7l1.4 2H20v11H4z"/><circle cx="12" cy="13.5" r="3.2"/><path d="M17.4 10h.1"/></svg>
+              <span>Camera</span>
+            </button>
+            <button id="filesButton" class="attachment-action" type="button" aria-label="Choose photos or text files" title="Choose photos or text files">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12.5 14.8 5.7a3.2 3.2 0 0 1 4.5 4.5l-8.8 8.9a5 5 0 0 1-7.1-7.1l8.5-8.5"/><path d="M8.5 15.5 16 8"/></svg>
+              <span>Photos &amp; files</span>
+            </button>
+          </div>
+          <span class="attachment-hint">Photos + readable text files</span>
+        </div>
+        <input id="cameraInput" class="visually-hidden" type="file" accept="image/*" capture="environment" aria-label="Capture a photo">
+        <input id="filesInput" class="visually-hidden" type="file" accept="image/*,.txt,.md,.csv,.json,.log,.xml,.html,.htm,.yaml,.yml,.js,.ts,.py,.css,.sql" multiple aria-label="Choose photos or text files">
+        <div id="attachmentTray" class="attachment-tray" hidden aria-live="polite" aria-label="Selected attachments"></div>
+        <form id="composerForm" class="composer">
+          <button id="micButton" class="mic-button" type="button" aria-label="Dictate a message" title="Dictate a message">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"/></svg>
+          </button>
+          <label class="visually-hidden" for="messageInput">Message Legend Boy</label>
+          <textarea id="messageInput" name="message" rows="1" maxlength="6000" enterkeyhint="send" placeholder="Ask Legend Boy anything…" autocomplete="off"></textarea>
+          <button id="sendButton" class="send-button" type="submit" aria-label="Send message">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 17 8-17 8 3-8-3-8Zm3 8h14"/></svg>
+          </button>
+        </form>
+        <div class="composer-footnote"><span>TAP MIC · AUTO-SENDS AFTER SPEECH</span><span id="characterCount">0 / 6000</span></div>
+        <p class="cloud-disclaimer">Photos and files are sent to your configured AI provider for analysis; they are not saved in chat history.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="imageViewer" class="image-viewer" hidden role="dialog" aria-modal="true" aria-label="Photo preview">
+    <button id="closeImageViewer" class="image-viewer-close" type="button" aria-label="Close photo preview">×</button>
+    <img id="imageViewerImage" alt="">
+    <p id="imageViewerCaption" class="image-viewer-caption"></p>
+  </div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
